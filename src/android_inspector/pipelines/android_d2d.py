@@ -9,6 +9,7 @@
 #
 
 from scanpipe.pipelines.deploy_to_develop import DeployToDevelop
+
 from android_inspector.pipes import android_d2d
 
 

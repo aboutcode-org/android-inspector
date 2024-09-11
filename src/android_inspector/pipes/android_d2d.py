@@ -16,7 +16,6 @@ from commoncode import command
 from commoncode import fileutils
 from scanpipe.pipes.d2d import FROM
 
-
 _IS_JADX_INSTALLED = None
 
 
