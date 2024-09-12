@@ -34,8 +34,9 @@ jobs:
 
               - task: JavaToolInstaller@0
                 inputs:
-                    versionSpec: '11'
+                    versionSpec: '17'
                     jdkArchitectureOption: 'x64'
+                    jdkSourceOption: 'PreInstalled'
                 displayName: '11 - Install Java'
 
               - script: |
@@ -45,7 +46,7 @@ jobs:
                     sudo cp .env /etc/scancodeio
                     wget "https://github.com/skylot/jadx/releases/download/v1.5.0/jadx-1.5.0.zip" -O /tmp/jadx-1.5.0.zip
                     sudo unzip /tmp/jadx-1.5.0.zip -d /usr
-                displayName: 'Install jadx 1.5.0'
+                displayName: '${{ pyver }} - Configure'
 
               - script: $(test_suite)
                 displayName: '${{ pyver }} - $(test_suite_label) on ${{ parameters.job_name }}'
