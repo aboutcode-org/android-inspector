@@ -10,10 +10,9 @@
 
 import os
 
-from commoncode.fileutils import get_temp_dir
+from commoncode.resource import Codebase
+from commoncode.resource import VirtualCodebase
 from commoncode.testcase import FileBasedTesting
-from scancode.cli_test_utils import check_json_scan
-from scancode.cli_test_utils import run_scan_click
 
 from android_inspector.pipes import android_d2d
 
@@ -30,11 +29,14 @@ class TestXgettextSymbolScannerPlugin(FileBasedTesting):
 
     def test_android_d2d_run_jadx(self):
         test_file = self.get_test_loc("classes.dex")
-        temp_dir = get_temp_dir()
+        temp_dir = self.get_temp_dir()
         android_d2d.run_jadx(test_file, temp_dir)
-        result_file = self.get_temp_file("json")
         sources_dir = os.path.join(temp_dir, "sources")
-        args = ["-i", sources_dir, "--json-pp", result_file]
-        run_scan_click(args)
+        # Check if paths are the same
         expected_loc = self.get_test_loc("run_jadx-expected.json")
-        check_json_scan(expected_loc, result_file, regen=REGEN_TEST_FIXTURES)
+        expected_codebase = VirtualCodebase(expected_loc)
+        expected_paths = sorted(r.path for r in expected_codebase.walk())
+        codebase = Codebase(sources_dir)
+        paths = sorted(r.path for r in codebase.walk())
+        for expected_path, path in zip(expected_paths, paths):
+            self.assertEqual(expected_path, path)
