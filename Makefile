@@ -51,7 +51,7 @@ clean:
 
 test:
 	@echo "-> Run the test suite"
-	${VENV}/bin/pytest -vvs
+	${VENV}/bin/pytest -vvs --ignore src/android_inspector/pipelines/android_d2d.py
 
 docs:
 	rm -rf docs/_build/
