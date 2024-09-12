@@ -43,8 +43,10 @@ class AndroidAPKDeployToDevelop(DeployToDevelop):
             cls.extract_archives,
             cls.convert_dex_to_java,
             cls.collect_and_create_codebase_resources,
+            cls.fingerprint_codebase_directories,
             cls.map_checksum,
             cls.map_path,
+            cls.match_directories_to_purldb,
         )
 
     def convert_dex_to_java(self):
