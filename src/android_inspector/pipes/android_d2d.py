@@ -9,7 +9,6 @@
 #
 
 import os
-
 from os.path import abspath
 from os.path import expanduser
 from os.path import join

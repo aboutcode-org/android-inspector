@@ -32,12 +32,20 @@ jobs:
                     architecture: '${{ parameters.python_architecture }}'
                 displayName: '${{ pyver }} - Install Python'
 
+              - task: JavaToolInstaller@0
+                inputs:
+                    versionSpec: '11'
+                    jdkArchitectureOption: 'x64'
+                displayName: '11 - Install Java'
+
               - script: |
                     make dev
                     make envfile_testing
                     sudo mkdir /etc/scancodeio
                     sudo cp .env /etc/scancodeio
-                displayName: '${{ pyver }} - Configure'
+                    wget "https://github.com/skylot/jadx/releases/download/v1.5.0/jadx-1.5.0.zip" -O /tmp/jadx-1.5.0.zip
+                    sudo unzip /tmp/jadx-1.5.0.zip -d /usr
+                displayName: 'Install jadx 1.5.0'
 
               - script: $(test_suite)
                 displayName: '${{ pyver }} - $(test_suite_label) on ${{ parameters.job_name }}'

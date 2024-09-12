@@ -17,17 +17,13 @@ from scancode.cli_test_utils import run_scan_click
 
 from android_inspector.pipes import android_d2d
 
-
 # Used for tests to regenerate fixtures with regen=True
 REGEN_TEST_FIXTURES = os.getenv("SCANCODE_REGEN_TEST_FIXTURES", False)
 
 
 class TestXgettextSymbolScannerPlugin(FileBasedTesting):
 
-    test_data_dir = os.path.join(
-        os.path.dirname(os.path.dirname(__file__)),
-        "data/android_d2d"
-    )
+    test_data_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data/android_d2d")
 
     def test_is_jadx_installed(self):
         assert android_d2d.is_jadx_installed()
