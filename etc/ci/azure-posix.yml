@@ -37,7 +37,7 @@ jobs:
                     versionSpec: '17'
                     jdkArchitectureOption: 'x64'
                     jdkSourceOption: 'PreInstalled'
-                displayName: '11 - Install Java'
+                displayName: 'Install Java 17'
 
               - script: |
                     make dev
