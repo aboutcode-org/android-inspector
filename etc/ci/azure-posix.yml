@@ -45,7 +45,7 @@ jobs:
                     sudo mkdir /etc/scancodeio
                     sudo cp .env /etc/scancodeio
                     wget "https://github.com/skylot/jadx/releases/download/v1.5.0/jadx-1.5.0.zip" -O /tmp/jadx-1.5.0.zip
-                    sudo unzip /tmp/jadx-1.5.0.zip -d /usr
+                    sudo unzip -o -d /usr /tmp/jadx-1.5.0.zip
                 displayName: '${{ pyver }} - Configure'
 
               - script: $(test_suite)
